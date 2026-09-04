@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatDate = (date: Date) => new Intl.DateTimeFormat('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(date);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <p class="eyebrow">HELLO</p>
+    <h1>记录技术、项目和一些想法。</h1>
+    <p class="intro">这里是我的个人博客。文章直接使用 Markdown 保存到 GitHub。</p>
+  </section>
+
+  <section class="posts">
+    <h2>文章</h2>
+    {posts.length === 0 ? (
+      <p class="muted">还没有文章。</p>
+    ) : (
+      <div class="post-list">
+        {posts.map((post) => (
+          <article>
+            <a href={`/blog/${post.id}/`}>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+              <span>{formatDate(post.data.pubDate)}</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    )}
+  </section>
+
+  <style>
+    .hero { padding: 20px 0 36px; }
+    .eyebrow { margin: 0 0 10px; font-size: .78rem; letter-spacing: .16em; font-weight: 700; color: #777; }
+    .intro { max-width: 620px; margin: 0; color: #686d73; font-size: 1.1rem; }
+    .posts { margin-top: 34px; }
+    .posts > h2 { margin-bottom: 12px; font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; color: #777; }
+    .post-list { display: grid; gap: 0; }
+    article { border-top: 1px solid #deded9; }
+    article:last-child { border-bottom: 1px solid #deded9; }
+    article a { display: block; padding: 22px 0; text-decoration: none; }
+    article h3 { margin: 0 0 7px; font-size: 1.3rem; }
+    article p { margin: 0 0 7px; color: #686d73; }
+    article span { font-size: .88rem; color: #8a8f95; }
+    article a:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+    @media (prefers-color-scheme: dark) {
+      .intro, article p, .eyebrow, .posts > h2, article span { color: #a4a9af; }
+      article { border-color: #30343a; }
+    }
+  </style>
+</BaseLayout>

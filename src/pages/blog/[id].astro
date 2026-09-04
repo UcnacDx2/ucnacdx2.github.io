@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = new Intl.DateTimeFormat('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(post.data.pubDate);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article class="post">
+    <a class="back" href="/">← 返回首页</a>
+    <header class="post-header">
+      <h1>{post.data.title}</h1>
+      <p>{post.data.description}</p>
+      <div class="meta">
+        <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
+        {post.data.tags.length > 0 && <span> · {post.data.tags.join(' / ')}</span>}
+      </div>
+    </header>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+
+  <style>
+    .back { display: inline-block; margin-bottom: 28px; color: #777; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+    .post-header { padding-bottom: 28px; border-bottom: 1px solid #deded9; }
+    .post-header h1 { font-size: clamp(2rem, 6vw, 3.2rem); }
+    .post-header p { margin: 0 0 12px; color: #686d73; font-size: 1.12rem; }
+    .meta { color: #8a8f95; font-size: .9rem; }
+    .content { margin-top: 36px; }
+    .content :global(img) { max-width: 100%; height: auto; border-radius: 12px; }
+    .content :global(a) { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    @media (prefers-color-scheme: dark) {
+      .back, .post-header p, .meta { color: #a4a9af; }
+      .post-header { border-color: #30343a; }
+    }
+  </style>
+</BaseLayout>
