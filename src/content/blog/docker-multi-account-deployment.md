@@ -7,7 +7,7 @@ tags:
   - Compose
   - NAS
   - DevOps
-draft: false
+draft: true
 ---
 
 最近我把一个自动任务项目部署到了 NAS 上。单账号很快就跑起来了，接下来真正有意思的问题是：第二个账号怎么加？

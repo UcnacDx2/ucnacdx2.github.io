@@ -7,7 +7,7 @@ tags:
   - Mihomo
   - iptables
   - Networking
-draft: false
+draft: true
 ---
 
 在 Linux 上部署代理时，有一个特别容易让人误判的状态：程序进程是 running，管理面板也能打开，于是下意识觉得“部署成功了”。

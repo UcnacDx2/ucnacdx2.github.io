@@ -6,7 +6,7 @@ tags:
   - Android TV
   - Intent
   - 小工具
-draft: false
+draft: true
 ---
 
 有些电视系统并没有删除 Android 原生设置，只是在厂商 Launcher 里把入口藏掉了。

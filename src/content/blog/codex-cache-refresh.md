@@ -6,7 +6,7 @@ tags:
   - CLI
   - Cache
   - Debug
-draft: false
+draft: true
 ---
 
 使用命令行 AI 工具时，我遇到过一个很烦的小问题：服务端能力已经变化，但本地看到的模型列表或状态一直不刷新。

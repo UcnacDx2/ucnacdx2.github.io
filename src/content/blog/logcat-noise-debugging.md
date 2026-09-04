@@ -6,7 +6,7 @@ tags:
   - Android
   - Logcat
   - Debug
-draft: false
+draft: true
 ---
 
 Android Logcat 最吓人的地方，不是没有信息，而是信息太多。

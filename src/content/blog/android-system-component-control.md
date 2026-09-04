@@ -6,7 +6,7 @@ tags:
   - Android
   - PackageManager
   - System
-draft: false
+draft: true
 ---
 
 我曾经研究过一个问题：如果应用拥有 system 级权限，是否就可以禁用系统应用里的某个 Activity、Service 或 Receiver？

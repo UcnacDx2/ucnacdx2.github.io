@@ -7,7 +7,7 @@ tags:
   - DRM
   - Firmware
   - 调查
-draft: false
+draft: true
 ---
 
 我曾经遇到过一个很有代表性的问题：某款电视的国内版无法正常使用 Netflix，而海外同型号版本可以。如果把国内机刷成国际版固件，认证会不会自动出现？

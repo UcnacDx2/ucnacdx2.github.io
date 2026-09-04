@@ -7,7 +7,7 @@ tags:
   - KernelSU
   - Linux Kernel
   - Battery
-draft: false
+draft: true
 ---
 
 我研究过在 Root / KernelSU 环境下控制充电阈值。看起来像是“写一个百分比”，实际上不同设备的实现差异很大。
