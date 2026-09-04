@@ -20,7 +20,10 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat('zh-CN', {
   </section>
 
   <section class="posts">
-    <h2>文章</h2>
+    <div class="posts-heading">
+      <h2>文章</h2>
+      <span>{posts.length} 篇公开文章</span>
+    </div>
     {posts.length === 0 ? (
       <p class="muted">还没有文章。</p>
     ) : (
@@ -43,7 +46,9 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat('zh-CN', {
     .eyebrow { margin: 0 0 10px; font-size: .78rem; letter-spacing: .16em; font-weight: 700; color: #777; }
     .intro { max-width: 620px; margin: 0; color: #686d73; font-size: 1.1rem; }
     .posts { margin-top: 34px; }
-    .posts > h2 { margin-bottom: 12px; font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; color: #777; }
+    .posts-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+    .posts-heading h2 { margin: 0; font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; color: #777; }
+    .posts-heading span { font-size: .88rem; color: #8a8f95; }
     .post-list { display: grid; gap: 0; }
     article { border-top: 1px solid #deded9; }
     article:last-child { border-bottom: 1px solid #deded9; }
@@ -53,7 +58,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat('zh-CN', {
     article span { font-size: .88rem; color: #8a8f95; }
     article a:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
     @media (prefers-color-scheme: dark) {
-      .intro, article p, .eyebrow, .posts > h2, article span { color: #a4a9af; }
+      .intro, article p, .eyebrow, .posts-heading h2, .posts-heading span, article span { color: #a4a9af; }
       article { border-color: #30343a; }
     }
   </style>
